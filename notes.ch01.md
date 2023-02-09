@@ -11,7 +11,8 @@ The [Curry-Howard isomorphism](https://en.wikipedia.org/wiki/Curry%E2%80%93Howar
 
 ### Q. What language do I want to use to implement?
 
-The book uses Java as the main language, but I don't want to.
+The first half of the book is an interpreter in Java (jlox). However I don't
+want to use Java.
 
 
 #### Options:
@@ -39,6 +40,10 @@ The book uses Java as the main language, but I don't want to.
 "By the end of part II, we’ll have a simple, readable implementation. It’s not very fast, but it’s correct. However, we are only able to accomplish that by building on the Java virtual machine’s own runtime facilities."
 
 Q. Does that mean I need to target the JVM?
+
+#### .
+
+Second half of the book is an interpreter in C (clox).
 
 
 
