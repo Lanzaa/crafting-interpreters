@@ -9,12 +9,12 @@
 The [Curry-Howard isomorphism](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence) is fascinating.
 
 
-Q. What language do I want to use to implement?
+### Q. What language do I want to use to implement?
 
 The book uses Java as the main language, but I don't want to.
 
 
-Options:
+#### Options:
 * Python
   * + Python is easy.
 * Rust
@@ -34,6 +34,7 @@ Options:
   * + Easy, I like the paradigm
 
 
+#### .
 
 "By the end of part II, we’ll have a simple, readable implementation. It’s not very fast, but it’s correct. However, we are only able to accomplish that by building on the Java virtual machine’s own runtime facilities."
 
