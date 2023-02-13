@@ -23,6 +23,9 @@ Q. What kind of IR do we use? What seems most appropriate?
 IRs remind me of the NxM problem in functional mapping of collections, a la [Transducers](https://clojure.org/reference/transducers).
 
 
-I have never heard of "global value numbering".
+I have never heard of "[global value numbering](https://handwiki.org/wiki/Value_numbering)". Seems like a simple enough concept.
+
+
+PyPy is an interesting JIT. Based on the idea; Is your interpreter slow? Write a JIT for the language in the language. Is your JIT too slow? Run the JIT in the JIT! Boom fast JIT!
 
 
