@@ -14,7 +14,7 @@ def defineAllAst(outputDir):
         "Unary : Token operator, Expr right",
         ])
 
-def defineAst(outputDir, base_name: str, sub_types: list):
+def defineAst(outputDir, base_name: str, sub_types_lines: list):
     """
     each sub_type looks like:
     NameOfIt : Type nameOfValue1, Type nameOfValue2
@@ -30,31 +30,58 @@ def defineAst(outputDir, base_name: str, sub_types: list):
 
         f.write(f"class {base_name}:\n  pass\n\n")
 
-        for sub_type in sub_types:
+        parsed_types = []
+        for line in sub_types_lines:
+            sub_type = parseType(line)
+            parsed_types.append(sub_type)
+
+        for sub_type in parsed_types:
             f.write(typeToClass(base_name, sub_type))
             f.write("\n")
+        f.write("\n")
+        # Write a pattern match example
 
-def typeToClass(base, line: str) -> str:
+        f.write(f"def pattern_match_example(node: {base_name}):\n")
+        f.write("  match node:\n")
+        for name, sub_types in parsed_types:
+            params = ", ".join( f"{pn}: {t}" for pn, t in sub_types.items())
+            f.write(f"    case {name}({params}):\n")
+            f.write(f"      pass\n")
+        f.write(f"    case _:\n")
+        f.write(f"      raise ValueError(\"Unknown type\")\n")
+        f.write("\n")
+
+
+        pass
+
+def parseType(line: str) -> tuple:
     """
-    > typeToClass("X", "NameOfIt : Type nameOfValue1, Type nameOfValue2")
+    > parseType("NameOfIt : Type nameOfValue1, Type nameOfValue2")
+    ("NameOfIt", {"nameOfValue1": "Type", "nameOfValue2": "Type"})
+    """
+    name, params_defs = line.split(":")
+    name = name.strip()
+    params = {}
+    for p in params_defs.strip().split(","):
+        p_type, p_name = p.strip().split(" ")
+        params[p_name] = p_type
+    return (name, params)
+
+def typeToClass(base, definition) -> str:
+    """
+    > typeToClass("X", ("NameOfIt", {"nameOfValue1": "Type", "nameOfValue2": "Type"}))
     @dataclass
     class NameOfIt(X):
       nameOfValue1: Type
       nameOfValue2: Type
     """
-    name, params = line.split(":")
-    out = [
-      "@dataclass",
-      f"class {name}({base}):"
-    ]
-    for p in params.strip().split(","):
-        p_type, p_name = p.strip().split(" ")
+    name, params = definition
+    out = ["@dataclass",
+           f"class {name}({base}):"]
+    for p_name, p_type in params.items():
         out.append(f"  {p_name}: {p_type}")
     out.append("")
     return "\n".join(out)
-
-
-
 
 
 if __name__ == "__main__":

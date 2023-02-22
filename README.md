@@ -23,7 +23,9 @@ I'm planning to work through the chapters of the book and write some code.
 
 If we have productions, what code generates derivatives?
 
-See also [py-loxi/generate-ast.py]
+See also [py-loxi/tool/generate-ast.py]
+
+Since python has pattern matching, should I implement using that instead of visitor pattern?
 
 
 
