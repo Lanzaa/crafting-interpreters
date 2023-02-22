@@ -1,3 +1,5 @@
+import loxi
+from loxi import Token
 from dataclasses import dataclass
 
 class Expr:
@@ -15,7 +17,7 @@ class Grouping(Expr):
 
 @dataclass
 class Literal(Expr):
-  value: Object
+    value: object
 
 @dataclass
 class Unary(Expr):
@@ -23,6 +25,7 @@ class Unary(Expr):
   right: Expr
 
 
+"""
 def pattern_match_example(node: Expr):
   match node:
     case Binary(left: Expr, operator: Token, right: Expr):
@@ -36,3 +39,4 @@ def pattern_match_example(node: Expr):
     case _:
       raise ValueError("Unknown type")
 
+"""

@@ -10,7 +10,7 @@ def defineAllAst(outputDir):
     defineAst(outputDir, "Expr", [
         "Binary : Expr left, Token operator, Expr right",
         "Grouping : Expr expression",
-        "Literal : Object value",
+        "Literal : object value",
         "Unary : Token operator, Expr right",
         ])
 
@@ -44,7 +44,7 @@ def defineAst(outputDir, base_name: str, sub_types_lines: list):
         f.write(f"def pattern_match_example(node: {base_name}):\n")
         f.write("  match node:\n")
         for name, sub_types in parsed_types:
-            params = ", ".join( f"{pn}: {t}" for pn, t in sub_types.items())
+            params = ", ".join( f"{pn}" for pn, t in sub_types.items())
             f.write(f"    case {name}({params}):\n")
             f.write(f"      pass\n")
         f.write(f"    case _:\n")
