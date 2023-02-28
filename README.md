@@ -28,4 +28,8 @@ See also [py-loxi/tool/generate-ast.py]
 Since python has pattern matching, should I implement using that instead of visitor pattern?
 
 
+### Notes Chapter 06
+
+Had to move around code for imports not to be circular.
+
 

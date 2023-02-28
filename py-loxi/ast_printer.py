@@ -6,7 +6,7 @@ def parenthesize(name, *exprs) -> str:
     return "(" + " ".join(pretty_exprs) + ")"
 
 
-def print_ast(node: Expr):
+def print_ast(node: Expr) -> str:
   match node:
     case Binary(left, operator, right):
       return parenthesize(operator.lexeme, left, right)

@@ -1,5 +1,4 @@
-import loxi
-from loxi import Token
+from basics import Token
 from dataclasses import dataclass
 
 class Expr:
