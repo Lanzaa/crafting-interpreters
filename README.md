@@ -16,7 +16,7 @@ I'm planning to work through the chapters of the book and write some code.
 
 ### [Notes Chapter 02](notes.ch02.md)
 
-### Note Chapter 05
+### Notes Chapter 05
 
 * derivatives (strings from the grammar) 
 * productions (rules).
