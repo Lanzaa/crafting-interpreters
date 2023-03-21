@@ -32,4 +32,6 @@ Since python has pattern matching, should I implement using that instead of visi
 
 Had to move around code for imports not to be circular.
 
+### Notes Chapter 07
 
+Evaluation
