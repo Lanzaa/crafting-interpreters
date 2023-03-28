@@ -35,3 +35,7 @@ Had to move around code for imports not to be circular.
 ### Notes Chapter 07
 
 Evaluation
+
+### Notes Chapter 08
+
+

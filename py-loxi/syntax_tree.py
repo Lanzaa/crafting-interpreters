@@ -39,3 +39,26 @@ def pattern_match_example(node: Expr):
       raise ValueError("Unknown type")
 
 """
+
+class Stmt:
+  pass
+
+@dataclass
+class Expression(Stmt):
+  expression: Expr
+
+@dataclass
+class Print(Stmt):
+  expression: Expr
+
+
+"""
+def pattern_match_example(node: Stmt):
+  match node:
+    case Expression(expression):
+      pass
+    case Print(expression):
+      pass
+    case _:
+      raise ValueError("Unknown type")
+"""

@@ -13,6 +13,10 @@ def defineAllAst(outputDir):
         "Literal : object value",
         "Unary : Token operator, Expr right",
         ])
+    defineAst(outputDir, "Stmt", [
+        "Expression : Expr expression",
+        "Print : Expr expression",
+        ])
 
 def defineAst(outputDir, base_name: str, sub_types_lines: list):
     """
