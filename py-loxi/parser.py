@@ -13,10 +13,24 @@ class Parser:
         self.current = 0
 
     def parse(self):
-        try:
-            return self.expression()
-        except ParseError:
-            return None
+        statements = []
+        while not self.isAtEnd():
+            statements.append(self.statement())
+        return statements
+
+    def statement(self) -> Stmt:
+        if self.match(PRINT):
+            return self.printStatement()
+        return self.expressionStatement()
+
+    def printStatement(self) -> Stmt:
+        value = self.expression()
+        self.consume(SEMICOLON, "Expect ';' after value.");
+        return Print(value)
+
+    def expressionStatement(self) -> Stmt:
+        pass # TODO
+
 
     def expression(self) -> Expr:
         return self.equality()

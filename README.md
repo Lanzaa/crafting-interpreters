@@ -36,6 +36,8 @@ Had to move around code for imports not to be circular.
 
 Evaluation
 
+N. skipped detecting runtime errors
+
 ### Notes Chapter 08
 
 

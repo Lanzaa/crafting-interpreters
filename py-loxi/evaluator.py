@@ -24,19 +24,49 @@ def eval_ast(node: Expr):
 
 
 def operateOn(op: Token, left, right):
-    return -9
+    match op.type:
+        case TokenType.MINUS:
+            return left - right
+        case TokenType.SLASH:
+            return left / right
+        case TokenType.STAR:
+            return left * right
+        case TokenType.PLUS:
+            return left + right
+        case TokenType.GREATER:
+            return left > right
+        case TokenType.GREATER_EQUAL:
+            return left >= right
+        case TokenType.LESS:
+            return left < right
+        case TokenType.LESS_EQUAL:
+            return left <= right
+        case TokenType.EQUAL_EQUAL:
+            return left == right
+        case TokenType.BANG_EQUAL:
+            return left != right
+        case _:
+            assert False, "invalid binary op"
+    assert False, "invalid binary op"
 
 
 def eval_unary(node: Unary):
     right = eval_ast(node.right)
-    node.right
-    node.operator
     match node.operator.type:
       case TokenType.MINUS:
+        checkNumberOperand(None, right)
         return -1*right
       case TokenType.BANG:
         return not isTruthy(right)
     assert False, "Unknown unary operator"
+
+def checkNumberOperand(op, a):
+    if not isinstance(a, float):
+        raise ValueError("Operand must be a number.")
+
+def checkNumberOperands(op, a, b):
+    if not (isinstance(a, float) and isinstance(b, float)):
+        raise ValueError("Operands must be numbers.")
 
 
 def isTruthy(ob) -> bool:

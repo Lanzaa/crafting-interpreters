@@ -187,6 +187,13 @@ def printAst(source: str) -> str:
         return
     print(print_ast(e))
 
+def parseExpression(source: str):
+    """
+    Scan and parse a source string then return the ast.
+    """
+    scanner = Scanner(source)
+    tokens: list[Token] = scanner.scanTokens()
+    return Parser(tokens).expression()
 
 run = printAst
 
