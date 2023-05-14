@@ -37,6 +37,8 @@ Had to move around code for imports not to be circular.
 Evaluation
 
 N. skipped detecting runtime errors
+TODO handle runtime error
+TODO add test cases for interpreter
 
 ### Notes Chapter 08
 

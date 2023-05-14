@@ -1,7 +1,21 @@
-
-
+from evaluator import eval_ast
+from syntax_tree import *
 
 class Interpreter:
+
+    def interpret(self, expr: Expr) -> None:  # Prints the results of an Expression
+        try:
+            result = eval_ast(expr)
+            print(stringify(result))
+        except RuntimeError:
+            print("RUNTIME ERROR")  # TODO better error message
+
+
+def stringify(o) -> str:
+    if o is None:
+        return "nil"
+    # TODO truncate integers, ie "2.0" -> "2"
+    return str(o)
 
     def pattern_match_example(node: Expr):
         match node:

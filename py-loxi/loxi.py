@@ -11,6 +11,7 @@ from typing import *
 from syntax_tree import Expr
 from basics import *
 from parser import Parser
+from interpreter import Interpreter
 from ast_printer import print_ast
 
 def main(args: list[str]):
@@ -195,7 +196,15 @@ def parseExpression(source: str):
     tokens: list[Token] = scanner.scanTokens()
     return Parser(tokens).expression()
 
-run = printAst
+def printEval(source: str) -> str:
+    """
+     a source string then print the ast.
+    """
+    e: Expr = parseExpression(source)
+
+    print(Interpreter().interpret(e))
+
+run = printEval
 
 if __name__ == "__main__":
     exit(main(sys.argv))
