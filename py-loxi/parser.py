@@ -1,3 +1,5 @@
+from typing import List
+
 from syntax_tree import *
 from basics import Token, error_parse
 from basics import TokenType
@@ -12,7 +14,7 @@ class Parser:
         self.tokens = tokens
         self.current = 0
 
-    def parse(self):
+    def parse(self) -> List[Stmt]:
         statements = []
         while not self.isAtEnd():
             statements.append(self.statement())
