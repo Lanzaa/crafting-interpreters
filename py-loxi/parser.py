@@ -29,9 +29,10 @@ class Parser:
         return Print(value)
 
     def expressionStatement(self) -> Stmt:
-        pass # TODO
-
-
+        expr = self.expression()
+        self.consume(SEMICOLON, "Expect ';' after value.");
+        return Expression(expr)
+    
     def expression(self) -> Expr:
         return self.equality()
 

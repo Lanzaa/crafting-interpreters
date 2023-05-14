@@ -154,7 +154,15 @@ class TestEval(unittest.TestCase):
     def test_runtime_errors(self):
         expr = '2 * (3 / -"muffin")'
         e = parseExpression(expr)
+        # print(r)
+
         self.assertEqual(eval_ast(e), True)
+
+
+
+
+
+
 
 
     """

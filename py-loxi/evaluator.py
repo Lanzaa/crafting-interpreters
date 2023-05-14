@@ -63,10 +63,10 @@ def eval_unary(node: Unary):
 def checkNumberOperand(op, a):
     if not isinstance(a, float):
         raise ValueError("Operand must be a number.")
-
 def checkNumberOperands(op, a, b):
     if not (isinstance(a, float) and isinstance(b, float)):
         raise ValueError("Operands must be numbers.")
+
 
 
 def isTruthy(ob) -> bool:
