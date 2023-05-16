@@ -17,8 +17,26 @@ class Parser:
     def parse(self) -> List[Stmt]:
         statements = []
         while not self.isAtEnd():
-            statements.append(self.statement())
+            statements.append(self.declaration())
         return statements
+
+    def declaration(self) -> Stmt:
+        try:
+            if self.match(VAR):
+                return self.varDeclaration()
+            return self.statement()
+        except ParseError as e:
+            print("Parse error")
+            self.synchronize()
+            return None
+
+    def varDeclaration(self) -> Var:
+        name = self.consume(IDENTIFIER, "Expect a name after 'var'.") # self.variable() # ??
+        expr = None
+        if self.match(EQUAL):
+            expr = self.expression()
+        self.consume(SEMICOLON, "Expect ';' after value.");
+        return Var(name=name, initializer=expr)
 
     def statement(self) -> Stmt:
         if self.match(PRINT):
@@ -116,6 +134,8 @@ class Parser:
             e = self.expression()
             self.consume(RIGHT_PAREN, "Expect ')' after expression")
             return Grouping(e)
+        if self.match(IDENTIFIER):
+            return Variable(self.previous().literal)
         raise self.error(self.peek(), "Expect expression.")
 
     def consume(self, type_: TokenType, message) -> Token:
