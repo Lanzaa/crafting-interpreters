@@ -12,10 +12,12 @@ def defineAllAst(outputDir):
         "Grouping : Expr expression",
         "Literal : object value",
         "Unary : Token operator, Expr right",
+        "Variable : Token name",
         ])
     defineAst(outputDir, "Stmt", [
         "Expression : Expr expression",
         "Print : Expr expression",
+        "Var : Token name, Expr initializer",
         ])
 
 def defineAst(outputDir, base_name: str, sub_types_lines: list):

@@ -16,29 +16,35 @@ class Grouping(Expr):
 
 @dataclass
 class Literal(Expr):
-    value: object
+  value: object
 
 @dataclass
 class Unary(Expr):
   operator: Token
   right: Expr
 
+@dataclass
+class Variable(Expr):
+  name: Token
+
 
 """
 def pattern_match_example(node: Expr):
   match node:
-    case Binary(left: Expr, operator: Token, right: Expr):
+    case Binary(left, operator, right):
       pass
-    case Grouping(expression: Expr):
+    case Grouping(expression):
       pass
-    case Literal(value: Object):
+    case Literal(value):
       pass
-    case Unary(operator: Token, right: Expr):
+    case Unary(operator, right):
+      pass
+    case Variable(name):
       pass
     case _:
       raise ValueError("Unknown type")
-
 """
+
 
 class Stmt:
   pass
@@ -51,6 +57,10 @@ class Expression(Stmt):
 class Print(Stmt):
   expression: Expr
 
+@dataclass
+class Var(Stmt):
+  name: Token
+  initializer: Expr
 
 """
 def pattern_match_example(node: Stmt):
@@ -58,6 +68,8 @@ def pattern_match_example(node: Stmt):
     case Expression(expression):
       pass
     case Print(expression):
+      pass
+    case Var(name, initializer):
       pass
     case _:
       raise ValueError("Unknown type")
