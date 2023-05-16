@@ -8,7 +8,7 @@ Requires at least python 3.10
 
 import sys
 from typing import *
-from syntax_tree import Expr
+from syntax_tree import Expr, Stmt
 from basics import *
 from parser import Parser
 from interpreter import Interpreter
@@ -196,15 +196,29 @@ def parseExpression(source: str):
     tokens: list[Token] = scanner.scanTokens()
     return Parser(tokens).expression()
 
+def parseStatements(source: str) -> List[Stmt]:
+    """
+    Scan and parse a source string then return the ast.
+    """
+    scanner = Scanner(source)
+    tokens: list[Token] = scanner.scanTokens()
+    return Parser(tokens).parse()
+
 def printEval(source: str) -> str:
     """
      a source string then print the ast.
     """
     e: Expr = parseExpression(source)
-
     print(Interpreter().interpret(e))
 
-run = printEval
+def interpret(source: str) -> str:
+    """
+     a source string then print the ast.
+    """
+    e: List[Stmt] = parseStatements(source)
+    print(Interpreter().interpret(e))
+
+run = interpret
 
 if __name__ == "__main__":
     exit(main(sys.argv))

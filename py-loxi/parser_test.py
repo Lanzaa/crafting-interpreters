@@ -21,6 +21,24 @@ class TestParse(unittest.TestCase):
         o = eval_ast(e)
         self.assertEqual(o, 2.0)
 
+    def test_print_statement(self):
+        tokens: list[Token] = Scanner("print \"Hello World\";").scanTokens()
+        print(tokens)
+        r = Parser(tokens).parse()
+        self.assertEqual(r, [Print(expression=Literal(value="Hello World"))])
+        e = r[0].expression
+        o = eval_ast(e)
+        self.assertEqual(o, "Hello World")
+
+    def test_expression_statement(self):
+        tokens: list[Token] = Scanner("2+3;").scanTokens()
+        print(tokens)
+        r = Parser(tokens).parse()
+        PLUS = Token(TokenType.PLUS, None, None, None)
+        e = r[0].expression
+        o = eval_ast(e)
+        self.assertEqual(o, 5.0)
+
 
 
 if __name__ == '__main__':

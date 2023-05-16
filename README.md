@@ -10,6 +10,11 @@
 I'm planning to work through the chapters of the book and write some code.
 
 
+To start the interpreter:
+
+> python py-loxi/loxi.py
+
+
 
 
 ### [Notes Chapter 01](notes.ch01.md)
