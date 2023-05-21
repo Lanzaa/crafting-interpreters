@@ -47,6 +47,7 @@ class TestParse(unittest.TestCase):
         expr = r[0].initializer
         self.assertEqual(Literal(value=1.0), expr)
         self.assertEqual(1.0, eval_ast(expr))
+
     def test_empty_declaration(self):
         tokens = Scanner("var x;").scanTokens()
         r = Parser(tokens).parse()

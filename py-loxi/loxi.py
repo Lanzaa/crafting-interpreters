@@ -39,11 +39,6 @@ def runPrompt():
         print()
         pass
 
-
-def run(source: str) -> str:
-    raise NotImplementedError("No runFile yet")
-
-
 class Scanner:
 
     def __init__(self, source: str):

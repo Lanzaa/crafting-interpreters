@@ -135,7 +135,7 @@ class Parser:
             self.consume(RIGHT_PAREN, "Expect ')' after expression")
             return Grouping(e)
         if self.match(IDENTIFIER):
-            return Variable(self.previous().literal)
+            return Variable(self.previous())
         raise self.error(self.peek(), "Expect expression.")
 
     def consume(self, type_: TokenType, message) -> Token:

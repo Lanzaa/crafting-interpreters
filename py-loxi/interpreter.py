@@ -27,7 +27,7 @@ class Interpreter:
                 print(self.eval_ast(expression))
             case Var(name, initializer):
                 value = self.eval_ast(initializer) if initializer else None
-                self.env.define(name, value)
+                self.env.define(name.lexeme, value)
             case _:
                 raise NotImplementedError("Unknown statement type")  #ValueError("Unknown type")
     def eval_ast(self, node: Expr):
