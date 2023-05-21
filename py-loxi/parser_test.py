@@ -2,9 +2,11 @@
 import unittest
 
 import loxi
-from loxi import TokenType, Token, Scanner
+from basics import TokenType, Token
+from loxi import Scanner
 from syntax_tree import *
-from evaluator import *
+# from evaluator import *
+from interpreter import eval_ast_helper as eval_ast
 from parser import Parser
 
 # Pull TokenType members into namespace

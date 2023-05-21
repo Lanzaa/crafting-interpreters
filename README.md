@@ -1,20 +1,12 @@
-
-
-
 # My Scratch Work
 
 ## [Crafting Interpreters](https://craftinginterpreters.com/contents.html)
 
-
-
 I'm planning to work through the chapters of the book and write some code.
-
 
 To start the interpreter:
 
 > python py-loxi/loxi.py
-
-
 
 
 ### [Notes Chapter 01](notes.ch01.md)
@@ -47,4 +39,4 @@ TODO add test cases for interpreter
 
 ### Notes Chapter 08
 
-
+next is environments

@@ -3,7 +3,7 @@
 import unittest
 
 import loxi
-from loxi import TokenType, Token
+from basics import TokenType, Token
 from syntax_tree import *
 from ast_printer import print_ast
 

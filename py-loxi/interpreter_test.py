@@ -2,7 +2,7 @@
 import unittest
 
 import loxi
-from loxi import TokenType, Token, Scanner
+from basics import TokenType, Token
 from syntax_tree import *
 from evaluator import *
 from parser import Parser

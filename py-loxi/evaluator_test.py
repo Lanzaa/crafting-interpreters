@@ -1,14 +1,14 @@
 import unittest
 
 import loxi
-from loxi import TokenType, Token
+from basics import TokenType, Token
 from syntax_tree import *
 from evaluator import *
+from interpreter import Interpreter, eval_ast_helper as eval_ast
 
 from loxi import parseExpression
 
 class TestEval(unittest.TestCase):
-
     def test_literal(self):
         e = Literal("ok")
         o = eval_ast(e)
@@ -155,27 +155,8 @@ class TestEval(unittest.TestCase):
         expr = '2 * (3 / -"muffin")'
         e = parseExpression(expr)
         # print(r)
-
-        self.assertEqual(eval_ast(e), True)
-
-
-
-
-
-
-
-
-    """
-    def test_small_expr(self):
-        e = Binary(
-              Unary(Token(TokenType.MINUS, "-", None, 1), Literal(123)),
-              Token(TokenType.STAR, "*", None, 1),
-              Grouping(Literal(45.67))
-            )
-        o = print_ast(e)
-        self.assertEqual(o, "(* (- 123) (group 45.67))")
-        """
-
+        with self.assertRaises(Exception):
+            eval_ast(e)
 
 if __name__ == '__main__':
     unittest.main()
