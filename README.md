@@ -39,9 +39,8 @@ TODO add test cases for interpreter
 
 ### Notes Chapter 08
 
-next is environments
-basic environments implemented. need test cases
-
 TODO
-[] assignment
+[x] assignment
 [] scopes
+
+

@@ -30,5 +30,6 @@ class TestInterpret(unittest.TestCase):
         result = i.eval_ast(loxi.parseExpression("a"))
         self.assertEqual(2.0, result)
 
+
 if __name__ == '__main__':
     unittest.main()
