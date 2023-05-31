@@ -18,7 +18,6 @@ class Interpreter:
         except Exception as e:
             print("RUNTIME ERROR: ", e)  # TODO better runtime error
 
-
     def visitStmt(self, node: Stmt):
         match node:
             case Expression(expression):
@@ -30,10 +29,10 @@ class Interpreter:
                 self.env.define(name.lexeme, value)
             case _:
                 raise NotImplementedError("Unknown statement type")  #ValueError("Unknown type")
+
     def eval_ast(self, node: Expr):
         match node:
             case Binary(left, operator, right):
-                ## todo
                 return operateOn(operator, self.eval_ast(left), self.eval_ast(right))
             case Grouping(expression):
                 return self.eval_ast(expression)
@@ -45,7 +44,7 @@ class Interpreter:
                 return self.env.get(name)
             case Assign(name, expr):
                 val = self.eval_ast(expr)
-                self.env.define(name, val)
+                self.env.assign(name, val)
                 return val
             case _:
                 raise ValueError(f"Unable to evaluate unknown type '{node}'.")
@@ -65,9 +64,11 @@ def checkNumberOperand(op, a):
     if not isinstance(a, float):
         raise ValueError("Operand must be a number.")
 
+
 def checkNumberOperands(op, a, b):
     if not (isinstance(a, float) and isinstance(b, float)):
         raise ValueError("Operands must be numbers.")
+
 
 def isTruthy(ob) -> bool:
     if ob is None:

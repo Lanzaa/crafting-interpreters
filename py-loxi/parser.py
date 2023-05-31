@@ -58,7 +58,7 @@ class Parser:
 
     def assignment(self) -> Expr:
         expr = self.equality();
-        if self.match(EQUALS):
+        if self.match(EQUAL):
             equals = self.previous()
             value = self.assignment()
             if isinstance(expr, Variable):
