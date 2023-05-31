@@ -27,6 +27,11 @@ class Unary(Expr):
 class Variable(Expr):
   name: Token
 
+@dataclass
+class Assign(Expr):
+  name: Token
+  value: Expr
+
 
 """
 def pattern_match_example(node: Expr):
@@ -40,6 +45,8 @@ def pattern_match_example(node: Expr):
     case Unary(operator, right):
       pass
     case Variable(name):
+      pass
+    case Assign(name, value):
       pass
     case _:
       raise ValueError("Unknown type")

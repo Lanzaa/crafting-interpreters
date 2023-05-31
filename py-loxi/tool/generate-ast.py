@@ -13,6 +13,7 @@ def defineAllAst(outputDir):
         "Literal : object value",
         "Unary : Token operator, Expr right",
         "Variable : Token name",
+        "Assign : Token name, Expr value",
         ])
     defineAst(outputDir, "Stmt", [
         "Expression : Expr expression",

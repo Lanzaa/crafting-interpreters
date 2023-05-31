@@ -43,6 +43,10 @@ class Interpreter:
                 return self.eval_unary(node)
             case Variable(name):
                 return self.env.get(name)
+            case Assign(name, expr):
+                val = self.eval_ast(expr)
+                self.env.define(name, val)
+                return val
             case _:
                 raise ValueError(f"Unable to evaluate unknown type '{node}'.")
 
