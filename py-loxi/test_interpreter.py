@@ -30,6 +30,18 @@ class TestInterpret(unittest.TestCase):
         result = i.eval_ast(loxi.parseExpression("a"))
         self.assertEqual(2.0, result)
 
+    def test_basic_blocks(self):
+        a = "var a = 1; { var a = 1; a = 2; print(a); } print(a);"
+        e: List[Stmt] = loxi.parseStatements(a)
+        self.assertEqual(3, len(e))
+        i = Interpreter()
+        i.interpret(e[:1])
+        result = i.eval_ast(loxi.parseExpression("a"))
+        self.assertEqual(1.0, result)
+        i.interpret(e[1:])
+        result = i.eval_ast(loxi.parseExpression("a"))
+        self.assertEqual(1.0, result)
+
 
 if __name__ == '__main__':
     unittest.main()

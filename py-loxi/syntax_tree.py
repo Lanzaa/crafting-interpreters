@@ -1,3 +1,5 @@
+from typing import List
+
 from basics import Token
 from dataclasses import dataclass
 
@@ -57,6 +59,10 @@ class Stmt:
   pass
 
 @dataclass
+class Block(Stmt):
+  statements: List[Stmt]
+
+@dataclass
 class Expression(Stmt):
   expression: Expr
 
@@ -72,6 +78,8 @@ class Var(Stmt):
 """
 def pattern_match_example(node: Stmt):
   match node:
+    case Block(statements):
+      pass
     case Expression(expression):
       pass
     case Print(expression):

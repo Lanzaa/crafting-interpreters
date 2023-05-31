@@ -57,9 +57,13 @@ class TestParse(unittest.TestCase):
         expr = r[0].initializer
         self.assertEqual(None, expr)
 
-
-
-
+    def test_block_statement(self):
+        tokens: list[Token] = Scanner("{ var a = 2; print(a); }").scanTokens()
+        r = Parser(tokens).parse()
+        self.assertEqual(1, len(r))
+        block = r[0]
+        statements = block.statements
+        self.assertEqual(2, len(statements))
 
 
 if __name__ == '__main__':

@@ -1,7 +1,5 @@
 from typing import List
 
-#from evaluator import eval_ast
-
 from basics import *
 from syntax_tree import *
 from environment import Environment
@@ -20,6 +18,8 @@ class Interpreter:
 
     def visitStmt(self, node: Stmt):
         match node:
+            case Block(statements):
+                self.executeBlock(statements, Environment(self.env))
             case Expression(expression):
                 self.eval_ast(expression)
             case Print(expression):
@@ -29,6 +29,15 @@ class Interpreter:
                 self.env.define(name.lexeme, value)
             case _:
                 raise NotImplementedError("Unknown statement type")  #ValueError("Unknown type")
+
+    def executeBlock(self, statements: List[Stmt], env: Environment):
+        prev_env = self.env
+        try:
+            self.env = env
+            for statement in statements:
+                self.visitStmt(statement)
+        finally:
+            self.env = prev_env
 
     def eval_ast(self, node: Expr):
         match node:
